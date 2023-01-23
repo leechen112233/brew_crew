@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1050408275732",
+    "project_id": "brewcrew-ca745",
+    "storage_bucket": "brewcrew-ca745.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1050408275732:android:a09fe3bbf419512623bc01",
+        "android_client_info": {
+          "package_name": "com.chenligo.brew_crew"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1050408275732-179ut8t06sshmmm758mnirdic9pkeh24.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcUrHrjHg7QnHohJEzXI7Q7jPJROUZ2mQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1050408275732-179ut8t06sshmmm758mnirdic9pkeh24.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
