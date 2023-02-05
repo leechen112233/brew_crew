@@ -1,4 +1,4 @@
-import 'package:brew_crew/screens/services/auth.dart';
+import 'package:brew_crew/services/auth.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
@@ -17,7 +17,7 @@ class _SignInState extends State<SignIn> {
       appBar: AppBar(
         backgroundColor: Colors.brown[400],
         elevation: 0.0,
-        title: Text("Sign in as a guest"),
+        title: Text("Sign in Brew Crew"),
       ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
@@ -26,7 +26,7 @@ class _SignInState extends State<SignIn> {
             foregroundColor: MaterialStateProperty.all(Colors.black),
             backgroundColor: MaterialStateProperty.all(Colors.white),
           ),
-          child: Text('Sign in'),
+          child: Text('Sign in as a guest'),
           onPressed: () async {
             dynamic res = await _auth.signInAnon();
             if(res==null){
@@ -34,7 +34,7 @@ class _SignInState extends State<SignIn> {
             }
             else{
               print("Signed in");
-              print(res);
+              print(res.uid);
             }
           },
         ),
