@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "1050408275732",
-    "project_id": "brewcrew-ca745",
-    "storage_bucket": "brewcrew-ca745.appspot.com"
+    "project_number": "522023367028",
+    "project_id": "brew-crew-eb8af",
+    "storage_bucket": "brew-crew-eb8af.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1050408275732:android:a09fe3bbf419512623bc01",
+        "mobilesdk_app_id": "1:522023367028:android:dfe74ae6e8c62493cdfc21",
         "android_client_info": {
           "package_name": "com.chenligo.brew_crew"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1050408275732-179ut8t06sshmmm758mnirdic9pkeh24.apps.googleusercontent.com",
+          "client_id": "522023367028-8gq83hkfd2k3as4l6cjf2bqn4kgb5l41.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDcUrHrjHg7QnHohJEzXI7Q7jPJROUZ2mQ"
+          "current_key": "AIzaSyAnKeen3GCzY1yFdYBxCyl8QiUY2Qu68b0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1050408275732-179ut8t06sshmmm758mnirdic9pkeh24.apps.googleusercontent.com",
+              "client_id": "522023367028-8gq83hkfd2k3as4l6cjf2bqn4kgb5l41.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
