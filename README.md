@@ -8,4 +8,15 @@
 Signin      Register             BrewList   Settings
 
 
-firebase unique identifier: brew-crew-eb8af
+### Tourbleshooting
+    Error: Cannot run with sound null safety, because the following dependencies
+    don't support null safety:
+
+    - package:firebase_auth
+    - package:firebase_core
+    - package:firebase_core_platform_interface
+    - package:plugin_platform_interface
+    - package:quiver
+
+    Run 'flutter run --no-sound-null-safety'
+
