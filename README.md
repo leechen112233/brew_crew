@@ -1,6 +1,7 @@
 # brew_crew
 
 ### structures
+                  provider(Auth Change Stream for state management)
                 MyApp (root)
             Wrapper (listen to auth changes)
  (not logged in)                    (loggedin)
