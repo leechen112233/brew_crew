@@ -17,16 +17,16 @@ class _SignInState extends State<SignIn> {
       appBar: AppBar(
         backgroundColor: Colors.brown[400],
         elevation: 0.0,
-        title: Text("Sign in Brew Crew"),
+        title: const Text("Sign in Brew Crew"),
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
         child: ElevatedButton(
           style: ButtonStyle(
             foregroundColor: MaterialStateProperty.all(Colors.black),
             backgroundColor: MaterialStateProperty.all(Colors.white),
           ),
-          child: Text('Sign in as a guest'),
+          child: const Text('Sign in as a guest'),
           onPressed: () async {
             dynamic res = await _auth.signInAnon();
             if(res==null){
