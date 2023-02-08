@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
-class Register extends StatefulWidget {
-  const Register({super.key});
+class SignUp extends StatefulWidget {
+  final Function? toggleView;
+  SignUp({this.toggleView});
 
   @override
-  State<Register> createState() => _RegisterState();
+  State<SignUp> createState() => _SignUpState();
 }
 
-class _RegisterState extends State<Register> {
+class _SignUpState extends State<SignUp> {
   late String email;
   late String password;
   @override
@@ -17,7 +18,12 @@ class _RegisterState extends State<Register> {
       appBar: AppBar(
         backgroundColor: Colors.brown[400],
         elevation: 0.0,
-        title: const Text("Register in Brew Crew"),
+        title: const Text("Sign up Brew Crew"),
+        actions: [
+          TextButton.icon(onPressed: (){
+            widget.toggleView!();
+          }, icon: Icon(Icons.person), label: Text("Sign in"))
+        ],
       ),
       body: Container(
           padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
