@@ -31,6 +31,16 @@ class AuthService{
   // sign in anonymously
 
   //sign in with email and password
+  Future signInWithEmailAndPassword(String email, String password) async {
+    try {
+        AuthResult result = await _auth.signInWithEmailAndPassword(email: email, password: password);
+        FirebaseUser user = result.user;
+        return _userFromFirebaseUser(user);
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
 
   //sign up with email and password
   Future signUpWithEmailAndPassword(String email, String password) async {
@@ -39,7 +49,7 @@ class AuthService{
         FirebaseUser user = result.user;
         return _userFromFirebaseUser(user);
     } catch (e) {
-      e.toString();
+      print(e.toString());
       return null;
     }
   }

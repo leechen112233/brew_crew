@@ -73,8 +73,6 @@ class _SignUpState extends State<SignUp> {
                           MaterialStatePropertyAll(Colors.brown[500])),
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      print(email);
-                      print(password);
                       dynamic res = await _auth.signUpWithEmailAndPassword(
                           email, password);
                       if (res == null) {
