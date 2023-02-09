@@ -1,3 +1,4 @@
+import '../../shared/consts.dart';
 import 'package:brew_crew/services/auth.dart';
 import 'package:flutter/material.dart';
 
@@ -42,6 +43,7 @@ class _SignInState extends State<SignIn> {
                   height: 20.0,
                 ),
                 TextFormField(
+                  decoration: textInputDecoration.copyWith(hintText: "Email"),
                     validator: (value) =>
                         value!.isEmpty ? "Enter an email" : null,
                     onChanged: ((value) {
@@ -53,6 +55,7 @@ class _SignInState extends State<SignIn> {
                   height: 20.0,
                 ),
                 TextFormField(
+                  decoration: textInputDecoration.copyWith(hintText: "Password"),
                   validator: (value) =>
                       value!.length < 6 ? "Enter a 6+ long password " : null,
                   onChanged: ((value) {
