@@ -1,5 +1,9 @@
+import 'package:brew_crew/screens/home/brew_list.dart';
 import 'package:brew_crew/services/auth.dart';
+import 'package:brew_crew/services/databaseService.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {
   Home({super.key});
@@ -8,24 +12,29 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.brown[50],
-      appBar: AppBar(
-        title: const Text("Brew Crew"),
-        backgroundColor: Colors.brown[400],
-        elevation: 0.0,
-        actions: <Widget>[
-          TextButton.icon(
-              style: ButtonStyle(
-                foregroundColor:
-                        MaterialStateProperty.all(Colors.white),
-              ),
-              onPressed: () async {
-                await _auth.signOut();
-              },
-              icon: const Icon(Icons.person),
-              label: const Text('Logout')),
-        ],
+    return StreamProvider<QuerySnapshot?>.value(
+      value: DatabaseService().brews,
+      initialData: null,
+      child: Scaffold(
+        backgroundColor: Colors.brown[50],
+        appBar: AppBar(
+          title: const Text("Brew Crew"),
+          backgroundColor: Colors.brown[400],
+          elevation: 0.0,
+          actions: <Widget>[
+            TextButton.icon(
+                style: ButtonStyle(
+                  foregroundColor:
+                          MaterialStateProperty.all(Colors.white),
+                ),
+                onPressed: () async {
+                  await _auth.signOut();
+                },
+                icon: const Icon(Icons.person),
+                label: const Text('Logout')),
+          ],
+        ),
+        body: BrewList(),
       ),
     );
   }
