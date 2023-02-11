@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/brew.dart';
+import 'brewForm.dart';
 
 class Home extends StatelessWidget {
   Home({super.key});
@@ -21,7 +22,7 @@ class Home extends StatelessWidget {
       showModalBottomSheet(context: context, builder: (context) {
         return Container(
           padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20.0),
-          child: Text("bottom sheet"),
+          child: BrewForm(),
         );
       });
     }
