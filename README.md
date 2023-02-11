@@ -8,6 +8,12 @@
  Authentication                         Home   
 Signin      Register             BrewList   Settings
 
+### User Data
+                   User Data
+              New user registers(new account)
+        create new record in the 'brews' collection for that user
+                name, sugars, strength
+
 
 ### Tourbleshooting
     Error: Cannot run with sound null safety, because the following dependencies

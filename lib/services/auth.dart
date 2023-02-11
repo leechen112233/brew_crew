@@ -1,4 +1,5 @@
 import 'package:brew_crew/models/user.dart';
+import 'package:brew_crew/services/databaseService.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -47,6 +48,7 @@ class AuthService{
     try {
         AuthResult result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
         FirebaseUser user = result.user;
+        await DatabaseService(uid: user.uid).updateUserDate('0', 'new crew memeber', 100);
         return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());
