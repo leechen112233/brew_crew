@@ -73,7 +73,7 @@ class _SignInState extends State<SignIn> {
                 ),
                 ElevatedButton.icon(
                   icon: const Icon(Icons.login),
-                  label: const Text("Login"),
+                  label: const Text("Sign in"),
                   style: ButtonStyle(
                       backgroundColor:
                           MaterialStatePropertyAll(Colors.brown[500])),

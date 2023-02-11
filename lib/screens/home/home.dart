@@ -11,8 +11,21 @@ class Home extends StatelessWidget {
 
   final AuthService _auth = AuthService();
 
+  
+
   @override
   Widget build(BuildContext context) {
+    
+    void _showSettingPanel(){
+      //showModalBottomSheet is a built in function to show its child in the modal of botton sheet
+      showModalBottomSheet(context: context, builder: (context) {
+        return Container(
+          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20.0),
+          child: Text("bottom sheet"),
+        );
+      });
+    }
+
     return StreamProvider<List<Brew>?>.value(
       value: DatabaseService().brews,
       initialData: null,
@@ -25,17 +38,25 @@ class Home extends StatelessWidget {
           actions: <Widget>[
             TextButton.icon(
                 style: ButtonStyle(
-                  foregroundColor:
-                          MaterialStateProperty.all(Colors.white),
+                  foregroundColor: MaterialStateProperty.all(Colors.white),
                 ),
                 onPressed: () async {
                   await _auth.signOut();
                 },
                 icon: const Icon(Icons.person),
-                label: const Text('Logout')),
+                label: const Text('Sign out')),
+            TextButton.icon(
+                style: ButtonStyle(
+                  foregroundColor: MaterialStateProperty.all(Colors.white),
+                ),
+                onPressed: () {
+                  _showSettingPanel();
+                },
+                icon: const Icon(Icons.settings),
+                label: const Text('Settings')),
           ],
         ),
-        body: BrewList(),
+        body: const BrewList(),
       ),
     );
   }
