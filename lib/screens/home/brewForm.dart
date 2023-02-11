@@ -67,7 +67,7 @@ class _BrewFormState extends State<BrewForm> {
                     
                     Row(
                       children: [
-                        Container(pwidth: 50, child: Text("Brew Strenth: ")),
+                        Container(width: 50, child: Text("Brew Strenth: ")),
                         Expanded(
                           child: Slider(
                               value: (_curStrength ?? 100).toDouble(),
