@@ -64,6 +64,18 @@ class _BrewFormState extends State<BrewForm> {
                           });
                         })),
                     //slider
+                    Slider(
+                        value: (_curStrength ?? 100).toDouble(),
+                        activeColor: Colors.brown[_curStrength ?? 100], //the color of the left side of the slider(active)
+                        inactiveColor: Colors.brown[_curStrength ?? 100],//the color of the right side of the slider(inactive)
+                        min: 100,
+                        max: 900,
+                        divisions:8, //the division must be right to get hundreds
+                        onChanged: ((value) {
+                          setState(() {
+                            _curStrength = value.round();
+                          });
+                        })),
                     ElevatedButton.icon(
                       icon: const Icon(Icons.update),
                       label: const Text("Update"),
