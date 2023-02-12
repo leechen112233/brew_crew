@@ -1,4 +1,7 @@
+import 'package:brew_crew/models/user.dart';
+import 'package:brew_crew/services/databaseService.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../shared/consts.dart';
 import '../../shared/loading.dart';
@@ -13,93 +16,110 @@ class BrewForm extends StatefulWidget {
 class _BrewFormState extends State<BrewForm> {
   final _formKey = GlobalKey<FormState>();
 
-  final List<int> sugarList = [0, 1, 2, 3, 4];
+  final List<String> sugarList = ['0', '1', '2', '3', '4'];
 
-  String _curSugars = '';
-  String _curName = '';
+  String? _curSugars;
+  String? _curName;
   int? _curStrength;
 
   bool loading = false;
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: loading
-          ? const Loading()
-          : Container(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    vertical: 20.0, horizontal: 40.0),
-                child: Column(
-                  children: [
-                    Text("Update your brew settings"),
-                    const SizedBox(
-                      height: 20.0,
-                    ),
-                    TextFormField(
-                      decoration:
-                          textInputDecoration.copyWith(hintText: "Name"),
-                      validator: (value) =>
-                          value!.isEmpty ? "Enter a name " : null,
-                      onChanged: ((value) {
-                        setState(() {
-                          _curName = value;
-                        });
-                      }),
-                    ),
-                    const SizedBox(
-                      height: 20.0,
-                    ),
-                    //drop down
-                    DropdownButtonFormField(
-                        decoration:
-                            textInputDecoration.copyWith(hintText: "Sugars"),
-                        items: sugarList.map((e) {
-                          return DropdownMenuItem(
-                              value: e, child: Text('$e sugar(s)'));
-                        }).toList(),
-                        onChanged: ((value) {
-                          setState(() {
-                            _curSugars = '$value';
-                          });
-                        })),
-                    //slider
-                    
-                    Row(
-                      children: [
-                        Container(width: 50, child: Text("Brew Strenth: ")),
-                        Expanded(
-                          child: Slider(
-                              value: (_curStrength ?? 100).toDouble(),
-                              activeColor: Colors.brown[_curStrength ?? 100], //the color of the left side of the slider(active)
-                              inactiveColor: Colors.brown[_curStrength ?? 100],//the color of the right side of the slider(inactive)
-                              min: 100,
-                              max: 900,
-                              divisions:8, //the division must be right to get hundreds
+    final user = Provider.of<User>(context);
+
+    return StreamBuilder<Object>(
+        stream: DatabaseService(uid: user.uid).userData,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            UserData userData = snapshot.data as UserData;
+            return Form(
+              key: _formKey,
+              child: loading
+                  ? const Loading()
+                  : Container(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 20.0, horizontal: 40.0),
+                        child: Column(
+                          children: [
+                            Text("Update your brew settings"),
+                            const SizedBox(
+                              height: 20.0,
+                            ),
+                            TextFormField(
+                              initialValue: _curName??userData.name,
+                              decoration: textInputDecoration.copyWith(
+                                  hintText: "Name"),
+                              validator: (value) =>
+                                  value!.isEmpty ? "Enter a name " : null,
                               onChanged: ((value) {
                                 setState(() {
-                                  _curStrength = value.round();
+                                  _curName = value;
                                 });
-                              })),
+                              }),
+                            ),
+                            const SizedBox(
+                              height: 20.0,
+                            ),
+                            //drop down
+                            DropdownButtonFormField(
+                                value: _curSugars ?? userData.sugars,
+                                decoration: textInputDecoration.copyWith(
+                                    hintText: "Sugars"),
+                                items: sugarList.map((e) {
+                                  return DropdownMenuItem(
+                                      value: e, child: Text('$e sugar(s)'));
+                                }).toList(),
+                                onChanged: ((value) {
+                                  setState(() {
+                                    _curSugars = '$value';
+                                  });
+                                })),
+                            //slider
+
+                            Row(
+                              children: [
+                                Container(
+                                    width: 60, child: Text("Strength: ")),
+                                Expanded(
+                                  child: Slider(
+                                      value: (_curStrength ?? userData.strength).toDouble(),
+                                      activeColor: Colors.brown[_curStrength ??
+                                          userData.strength], //the color of the left side of the slider(active)
+                                      inactiveColor: Colors.brown[_curStrength ??
+                                          userData.strength], //the color of the right side of the slider(inactive)
+                                      min: 100,
+                                      max: 900,
+                                      divisions:
+                                          8, //the division must be right to get hundreds
+                                      onChanged: ((value) {
+                                        setState(() {
+                                          _curStrength = value.round();
+                                        });
+                                      })),
+                                ),
+                              ],
+                            ),
+                            ElevatedButton.icon(
+                              icon: const Icon(Icons.update),
+                              label: const Text("Update"),
+                              style: ButtonStyle(
+                                  backgroundColor: MaterialStatePropertyAll(
+                                      Colors.brown[500])),
+                              onPressed: () {
+                                print(_curName);
+                                print(_curSugars);
+                                print(_curStrength);
+                              },
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
-                    ElevatedButton.icon(
-                      icon: const Icon(Icons.update),
-                      label: const Text("Update"),
-                      style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStatePropertyAll(Colors.brown[500])),
-                      onPressed: () {
-                        print(_curName);
-                        print(_curSugars);
-                        print(_curStrength);
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ),
-    );
+            );
+          } else {
+            return Loading();
+          }
+        });
   }
 }

@@ -3,9 +3,9 @@ import 'package:brew_crew/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DatabaseService {
-  late final String uid;
+  final String? uid;
   DatabaseService(
-      {required this.uid}); //whenever a user signs up, we store the uid
+      {this.uid}); //whenever a user signs up, we store the uid
 
   //collection reference
   final CollectionReference brewCollection =
@@ -31,7 +31,7 @@ class DatabaseService {
   //user data object from document snapshot
   UserData _getUserDataFromSnapShot(DocumentSnapshot snapshot) {
     return UserData(
-        uid: uid,
+        uid: uid!,
         name: snapshot.data['name'],
         sugars: snapshot.data['sugars'],
         strength: snapshot.data['strength']);
