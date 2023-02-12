@@ -12,19 +12,18 @@ class Home extends StatelessWidget {
 
   final AuthService _auth = AuthService();
 
-  
-
   @override
   Widget build(BuildContext context) {
-    
-    void _showSettingPanel(){
+    void _showSettingPanel() {
       //showModalBottomSheet is a built in function to show its child in the modal of botton sheet
-      showModalBottomSheet(context: context, builder: (context) {
-        return Container(
-          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20.0),
-          child: BrewForm(),
-        );
-      });
+      showModalBottomSheet(
+          context: context,
+          builder: (context) {
+            return Container(
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20.0),
+              child: BrewForm(),
+            );
+          });
     }
 
     return StreamProvider<List<Brew>?>.value(
@@ -57,7 +56,14 @@ class Home extends StatelessWidget {
                 label: const Text('Settings')),
           ],
         ),
-        body: const BrewList(),
+        body: Container(
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/coffee_bg.png'),
+                  fit: BoxFit.cover,
+                )
+            ),
+            child: const BrewList()),
       ),
     );
   }

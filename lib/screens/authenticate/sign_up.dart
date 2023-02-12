@@ -39,6 +39,10 @@ class _SignUpState extends State<SignUp> {
               ],
             ),
             body: Container(
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                        image: AssetImage('assets/coffee_bg.png'))),
                 padding: const EdgeInsets.symmetric(
                     vertical: 20.0, horizontal: 50.0),
                 child: Form(
