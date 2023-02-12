@@ -47,7 +47,7 @@ class _BrewFormState extends State<BrewForm> {
                               height: 20.0,
                             ),
                             TextFormField(
-                              initialValue: _curName??userData.name,
+                              initialValue: _curName ?? userData.name,
                               decoration: textInputDecoration.copyWith(
                                   hintText: "Name"),
                               validator: (value) =>
@@ -79,15 +79,17 @@ class _BrewFormState extends State<BrewForm> {
 
                             Row(
                               children: [
-                                Container(
-                                    width: 60, child: Text("Strength: ")),
+                                Container(width: 60, child: Text("Strength: ")),
                                 Expanded(
                                   child: Slider(
-                                      value: (_curStrength ?? userData.strength).toDouble(),
+                                      value: (_curStrength ?? userData.strength)
+                                          .toDouble(),
                                       activeColor: Colors.brown[_curStrength ??
-                                          userData.strength], //the color of the left side of the slider(active)
+                                          userData
+                                              .strength], //the color of the left side of the slider(active)
                                       inactiveColor: Colors.brown[_curStrength ??
-                                          userData.strength], //the color of the right side of the slider(inactive)
+                                          userData
+                                              .strength], //the color of the right side of the slider(inactive)
                                       min: 100,
                                       max: 900,
                                       divisions:
@@ -106,10 +108,15 @@ class _BrewFormState extends State<BrewForm> {
                               style: ButtonStyle(
                                   backgroundColor: MaterialStatePropertyAll(
                                       Colors.brown[500])),
-                              onPressed: () {
-                                print(_curName);
-                                print(_curSugars);
-                                print(_curStrength);
+                              onPressed: () async {
+                                if (_formKey.currentState!.validate()) {
+                                  await DatabaseService(uid: user.uid)
+                                      .updateUserData(
+                                          _curSugars ?? userData.sugars, //use the current value if there is no new value
+                                          _curName ?? userData.name,
+                                          _curStrength ?? userData.strength);
+                                  Navigator.pop(context);
+                                }
                               },
                             ),
                           ],

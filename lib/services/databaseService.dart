@@ -11,7 +11,7 @@ class DatabaseService {
   final CollectionReference brewCollection =
       Firestore.instance.collection('brews');
 
-  Future updateUserDate(String sugars, String name, int strength) async {
+  Future updateUserData(String sugars, String name, int strength) async {
     //when the uid, we can create a document for the brew collection
     await brewCollection
         .document(uid)
